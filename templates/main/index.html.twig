@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}index page{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    Header in index
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+    Footer in index
+{% endblock %}
+
+{% block content %}
+
+{% if students|length == 0 %}
+    The list of students is empty
+{% else %}
+    <table border="1">
+        {% for student in students %}
+            {% include 'main/row.html.twig' with {
+                'student': student,
+                'index': loop.index,
+            } %}
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}
